@@ -61,7 +61,11 @@ func handleList(filter string) {
 	tasks := GetTasks()
 
 	for i, task := range tasks {
-		outputMessage.WriteString( fmt.Sprintf("%v. %v\n  > %v\n", i+1, task.Name, task.Description))
+		description := ""
+		if task.Description != "" {
+			description = "  > " + task.Description + "\n"
+		}
+		outputMessage.WriteString(fmt.Sprintf("%v. %v\n%v", i+1, task.Name, description))
 	}
 
 	fmt.Println(outputMessage.String())
